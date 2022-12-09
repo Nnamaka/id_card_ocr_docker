@@ -28,7 +28,7 @@ def perform_ocr(detections, image_size, image):
     detections = {key: value[0, :num_detections].numpy()
                    for key, value in detections.items()}
         
-    detection_threshold = 0.2
+    detection_threshold = 0.1
 
     scores = list(filter(lambda x: x >detection_threshold, detections['detection_scores']))
     boxes = detections['detection_boxes'][:len(scores)]

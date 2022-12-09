@@ -2,7 +2,7 @@ import io
 from PIL import Image
 from pydantic import BaseModel
 from fastapi import FastAPI, File
-from utils import load_model, to_tensor, perform_ocr, result_to_dict
+from app.utils import load_model, to_tensor, perform_ocr, result_to_dict
 
 app = FastAPI()
 model = load_model()
