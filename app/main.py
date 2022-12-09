@@ -2,10 +2,16 @@ import io
 from PIL import Image
 from pydantic import BaseModel
 from fastapi import FastAPI, File
+import tensorflow as tf
+# while running script outside a docker, remove 'app' from 'app.utils' in line 8.
+
 from app.utils import load_model, to_tensor, perform_ocr, result_to_dict
 
 app = FastAPI()
 model = load_model()
+
+# warmup the model
+_ = model(tf.zeros([1,10,10,3],dtype=tf.uint8)) 
 
 class detectionOutput(BaseModel):
     ocr_result:dict
